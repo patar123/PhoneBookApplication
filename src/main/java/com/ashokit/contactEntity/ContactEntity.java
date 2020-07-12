@@ -1,4 +1,4 @@
-package com.ashokit.contactEntity;
+ package com.ashokit.contactEntity;
 
 import java.util.Date;
 
