@@ -57,15 +57,18 @@ public class ContactServiceImpl implements ContactService{
 	}
 
 	@Override
-	public boolean updateContact(Contact c) {
-		// TODO Auto-generated method stub
-		return false;
-	}
-
-	@Override
 	public boolean deleteContact(Integer cid) {
 		contactRepo.deleteById(cid);
 		return true;
 	}
 
+	@Override
+	public String findByMail(String email) {
+		ContactEntity entity = contactRepo.findByContactEmail(email);
+		if (entity!=null) {
+			return "Duplicate";
+		}else {
+			return "Unique";
+		}
+	}
 }

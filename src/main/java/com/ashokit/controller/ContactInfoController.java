@@ -8,6 +8,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.ashokit.model.Contact;
@@ -42,5 +44,12 @@ public class ContactInfoController {
 		List<Contact> list= contactservice.getAllContacts();
 		model.addAttribute("list", list);
 		return "viewContacts";
+	}
+	
+	@GetMapping("/validateEmail")
+	@ResponseBody
+	public String validateMail(@RequestParam("email")String email) {
+		String emailStatus = contactservice.findByMail(email);
+		return emailStatus;
 	}
 }
